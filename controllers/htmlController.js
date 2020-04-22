@@ -10,26 +10,78 @@ router.get("/", function (req, res) {
 })
 
 
-//main page, takes all user data and render
+//main page, takes all user data and render just if user logged in
 router.get("/movies", function (req, res) {
     if (req.session.user) {
-        db.User.findAll({
+        db.User.create({
             where: {
                 id: req.session.user.id //user?
             }
         }).then(dbUser => {
-            res.render("main", dbUser)
+            res.render("index", dbUser)
         })
     }else {
         res.redirect("/login");
     }
 })
 
+// create new list by event (button)
+router.post("/movies/addlist", function (req, res) { 
+    db.List.create({
+        list_title: req.body.list_title,
+        userId: req.session.user.id
+    }).then(newUser => {
+       //////////////
+        res.redirect('/movies')
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    })
+})
+
+//posting new movie to 'movie' table. the user can choose witch list (front)
+router.post("/movies/addmovie", function (req, res) { 
+    if (req.session.user) {
+        db.Movie.create({
+            movie_name: req.body.movie_name,
+            imdb_id: req.body.imdb_id,
+            listId: req.body.listId
+        }).then(newUser => {
+    //////////
+            res.redirect('/movies')
+        }).catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+    } else {
+        res.redirect("/login");
+    }
+})
+
+// edit list name
+router.put("/movies/editlistname/:id", function (req, res) { 
+    if (req.session.user) {
+        db.Movie.update({
+            list_title: req.body.movie_name
+        },{
+            where:{
+                id:req.params.id
+            }
+        }).then(newUser => {
+            /////
+            res.redirect('/movies')
+        }).catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        })
+    } else {
+        res.redirect("/login");
+    }
+})
 
 
-
-
-// movie page (when user press on movie in the list to get more info)
+/*
+// movie details page (when user press on movie in the list to get more info)
 router.get("/movies/:id", function (req, res) {
     if (req.session.user) {
         db.Movie.findOne({
@@ -45,7 +97,7 @@ router.get("/movies/:id", function (req, res) {
         res.redirect("/login");
     }
 })
-
+*/
 
 router.get("/logout", function (req, res) {
     req.session.destroy(function (err) {

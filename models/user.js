@@ -26,7 +26,7 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     User.associate = function(models) {
-        User.hasMany(models.Movie);
+        User.hasMany(models.Lists);
     }
 
     User.beforeCreate(function(user){
