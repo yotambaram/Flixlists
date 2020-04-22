@@ -85,7 +85,7 @@ $("#movie-search").on("click", function(event) {
     const movieObj = {
       movieName: req.body.movie_name,
       movieID: req.body.imdbID,
-      listID:listID
+      listID:listID               // this needs to be defined
     }
     $.ajax({
       method:"POST",
@@ -94,8 +94,5 @@ $("#movie-search").on("click", function(event) {
   }).then(data=>{
       location.reload();
   })
-
-  
-
 
 });
