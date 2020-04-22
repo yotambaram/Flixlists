@@ -38,14 +38,14 @@ app.set("view engine", "handlebars");
 
 // routes (*********************** NEED TO DEFINE ALL CONTOROLLERS FILES HERE ***********************)
 const htmlApiRoutes = require("./controllers/htmlController.js");
-const signInApiRoutes = require("./controllers/signInController.js");
-const signUpApiRoutes = require("./controllers/signUpApiRoutes.js");
+const signInApiRoutes = require("./controllers/signinController.js");
+const signUpApiRoutes = require("./controllers/signUpController.js");
 
 
 //user routes  (*********************** NEED TO USE ALL CONTOROLLERS FILES HERE **************************)
 app.use(htmlApiRoutes);
 app.use(signInApiRoutes);
-
+app.use(signUpApiRoutes);
 
 // sync the models and listen
 db.sequelize.sync({ force: false }).then(function () {
