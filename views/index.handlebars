@@ -1,0 +1,100 @@
+
+        <div class="container">
+            <div class="row">
+                <div class="section">
+                    <!-- Grab stuff from here for db -->
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="movie_search" type="text" />
+                                <label for="movie_search">Enter a Movie Title:</label>
+                                <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
+                                    Search!
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div id="apiCard" class="section">
+                    <div class="row">
+                        <div class="card light-blue lighten-5 col s12">
+                            <div class="card-content blue-text">
+                                <span class="card-title">Movie Title Goes Here
+                                    <div class="divider"></div></span>
+                                <div class="row">
+                                    <p class="col s2">
+                                        Movie Information
+                                    </p>
+                                    <p class="col s2">
+                                        Movie Information
+                                    </p>
+                                    <p class="col s2">
+                                        Movie Information
+                                    </p>
+                                    <img class="col s4" src="https://lorempixel.com/100/100/nature/6" />
+                                    <!-- submit db -->
+                                    <a class="btn-large col s2" id="addToListId">Add to List</a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- This, along with everything else, needs tweaking. it'll work for now though. -->
+            <div class="row">
+                <div class="section" id="movie-lists">
+                    <ul class="collection with-header col s4">
+                        <li class="collection-header cyan lighten-3">
+                            <h4>Best Movies</h4>
+                        </li>
+                        <li class="collection-item">Movie</li>
+                        <li class="collection-item">Movie</li>
+                        <li class="collection-item">Movie</li>
+                        <li class="collection-item">Movie</li>
+                    </ul>
+                    <ul class="collection with-header col s4">
+                        <li class="collection-header cyan lighten-3">
+                            <h4>Worst Movies</h4>
+                        </li>
+                        <li class="collection-item">Movie</li>
+                        <li class="collection-item">Movie</li>
+                        <li class="collection-item">Movie</li>
+                        <li class="collection-item">Movie</li>
+                    </ul>
+                    <ul class="collection with-header col s4">
+                        <li class="collection-header cyan lighten-3">
+                            <h4>So-so Movies</h4>
+                        </li>
+                        <li class="collection-item">Movie</li>
+                        <li class="collection-item">Movie</li>
+                        <li class="collection-item">Movie</li>
+                        <li class="collection-item">Movie</li>
+                    </ul>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+{{!-- Something more like this. Not sure if we'll need two loops or not. --}}
+
+   {{!--      {{#each movies}}
+   
+        
+
+    {{!--                 <ul class="collection with-header col s4">
+                        <li class="collection-header cyan lighten-3">
+                            {{!-- <h4>{{list_name}} </h4> 
+      {{!--                   </li>
+      {{!--                   {{#each movie_id}}
+     {{!--                    <li class="collection-item">{{movie_title}}</li>
+      {{!--                   {{/each}}
+      {{!--               </ul>
+    
+        {{/each}} --
