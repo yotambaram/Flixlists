@@ -1,4 +1,8 @@
 
+const express = require("express");
+const router = express.Router();
+const db = require("../models");
+const bcrypt = require("bcrypt");
 
 router.get("/login", function (req, res) {
     res.render("login");
@@ -15,9 +19,12 @@ router.post("/login", function (req, res) {
                 username: dbUser.username,
                 id: dbUser.id
             };
-            res.redirect('/movies/' + id)
+            res.redirect('/movies/')
         } else {
             res.send("not logged in")  //<---------------- MAKE A HTML RES
         }
     })
 })
+
+
+module.exports = router;

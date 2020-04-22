@@ -4,8 +4,12 @@ module.exports = function(sequelize, DataTypes) {
         //PUT HERE THE PARAMETERS WE WANT
     });
 
-    Product.associate = function(models) {
-        Product.hasMany(models.Review);
-    };
+    //    Movie.associate = function(models) {
+    //    Movie.hasMany(models.Review);
+    //};
     return Movie;
 };
+
+
+
+
