@@ -1,12 +1,24 @@
 module.exports = function(sequelize, DataTypes) {
-    var Movie = sequelize.define('Movie', {
-        movie_name: DataTypes.STRING,
-        //PUT HERE THE PARAMETERS WE WANT
+    const Movie = sequelize.define('Movie', {
+        movie_name :{
+            type: DataTypes.STRING,
+            allowNull:false,
+        },
+        imdb_id: {
+            type: DataTypes.INTEGER,
+            allowNull:false
+        }/*,
+        list_id: {
+            references: 'lists',
+            referencesKey: 'id'
+        }*/
     });
-
     Movie.associate = function(models) {
-        // Movie.hasMany(models.Review);
         Movie.belongsTo(models.User)
     };
     return Movie;
 };
+
+
+
+
