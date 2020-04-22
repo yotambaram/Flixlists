@@ -1,12 +1,20 @@
-const bcrypt = require("bcrypt");
+//const bcrypt = require("bcrypt");
 
 
 module.exports = function(sequelize, DataTypes) {
-    var User = sequelize.define('User', {
-        username: {
+    const User = sequelize.define('User', {
+        first_name: {
             type: DataTypes.STRING,
-            unique:true,
             allowNull:false
+        },
+        last_name :{
+            type: DataTypes.STRING,
+            allowNull:false,
+        },
+        email :{
+            type: DataTypes.STRING,
+            allowNull:false,
+            isEmail: true,
         },
         password :{
             type: DataTypes.STRING,
@@ -15,9 +23,11 @@ module.exports = function(sequelize, DataTypes) {
                 len: [8]
             }
         }
-        // add properites here
-        // ex: name: DataTypes.STRING
     });
+
+    User.associate = function(models) {
+        User.hasMany(models.Movie);
+    }
 
     User.beforeCreate(function(user){
         user.password = bcrypt.hashSync(user.password,bcrypt.genSaltSync(10),null);

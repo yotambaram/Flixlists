@@ -47,7 +47,6 @@ app.use(htmlApiRoutes);
 app.use(logInApiRoutes);
 app.use(signUpApiRoutes);
 
-
 // sync the models and listen
 db.sequelize.sync({ force: false }).then(function () {
   app.listen(PORT, function () {

@@ -1,2 +1,2 @@
-CREATE DATABASE favorate_movies_db;
-USE favorate_movies_db;
+CREATE DATABASE favorite_movies_db;
+USE favorite_movies_db;
