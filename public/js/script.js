@@ -77,23 +77,38 @@ $("#movie-search").on("click", function(event) {
 });
 
 
-
-$("#sign-up-form").on("submit", function(event) {
+$("#sign-up-form").submit(function(event) {
   event.preventDefault();
-  console.log("TEST THE SCRIPT FILE")
-  console.log(req.body.name_name)
-  const movieObj = {
-    first_name: req.body.name_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
+  const userObj = {
+    first_name: event.target.first_name.value,
+    last_name: event.target.last_name.value,
+    email: event.target.email.value,
+    password: event.target.password.value
   }
+  console.log(userObj)
+  
   $.ajax({
     method:"POST",
-    data:movieObj,
+    data:userObj,
     url:"/signup"
 }).then(data=>{
-    location.reload();
+  location.href = "/"
 })
 });
 
+
+$("#log-in-page").submit(function(event) {
+  event.preventDefault();
+  const logInObj = {
+    email: event.target.email.value,
+    password: event.target.password.value
+  }
+  
+  $.ajax({
+    method: "POST",
+    data: logInObj,
+    url: "/login"
+}).then(data=>{
+  location.href = "/"
+})
+});
