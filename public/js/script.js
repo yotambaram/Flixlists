@@ -84,20 +84,23 @@ $("#movie-search").on("click", function(event) {
 
 $("#sign-up-form").on("submit", function(event) {
   event.preventDefault();
-  console.log("TEST THE SCRIPT FILE")
+  console.log(event.target.first_name.value)
   console.log($("#first_name").val())
-  const movieObj = {
+  
+  
+  const userObj = {
     first_name: $("#first_name").val(),
     last_name: $("#last_name").val(),
     email: $("#email").val(),
     password: $("#password").val(),
   }
+  console.log(userObj)
   $.ajax({
     method:"POST",
-    data:movieObj,
+    data:userObj,
     url:"/signup"
 }).then(data=>{
-    location.reload();
+    location.href = "/"
 })
 });
 
@@ -115,12 +118,14 @@ $("#login-form").on("submit", function(event) {
     email: $("#email").val(),
     password: $("#password").val(),
   }
+
+  console.log(loginObj)
   $.ajax({
     method:"POST",
     data:loginObj,
     url:"/signup"
 }).then(data=>{
-    location.reload();
+    location.href = "/"
 })
 });
 
