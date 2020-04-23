@@ -5,7 +5,11 @@ const bcrypt = require("bcrypt");
 
 
 router.get("/login", function (req, res) {
-    res.render("login");
+    if(req.session.user){
+        res.redirect('/movies')
+    }else{
+        res.render("login");
+    }
 })
 
 router.post("/login", function (req, res) {
