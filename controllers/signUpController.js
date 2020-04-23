@@ -4,7 +4,11 @@ const db = require("../models");
 
 //const bcrypt = require("bcrypt");
 router.get("/signup", function (req, res) {
-    res.render("signup");
+    if(req.session.user){
+        res.redirect('/movies')
+    }else{
+        res.render("signup");
+    }  
 })
 
 router.post("/signup", function (req, res) {
