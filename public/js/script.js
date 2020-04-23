@@ -9,11 +9,10 @@
 // take the data from dt and show it on browser.
 // This function handles events where a movie button is clicked
 
-$("#movie-search").on("click", function(event) {
-    console.log("hello");
+$("#movie_search").on("submit", function(event) {
     event.preventDefault();
     // This line grabs the input from the textbox
-    let movie = $("#movie-input").val().trim();
+    let movie = $("#movie_search_title").val().trim();
     // this is John's key.
     // TODO: encrypt here
     var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=47b3bbc4";
@@ -22,6 +21,7 @@ $("#movie-search").on("click", function(event) {
           url: queryURL,
           method: "GET"
         }).then(function(response) {
+          console.log(response)
           // Creating a div to hold the movie
           var movieDiv = $("<div class='movie'>");
           // Storing the rating data
