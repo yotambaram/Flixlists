@@ -9,10 +9,6 @@
 // take the data from dt and show it on browser.
 // This function handles events where a movie button is clicked
 
-console.log("hello")
-
-
-
 $("#movie-search").on("click", function(event) {
     console.log("hello");
     event.preventDefault();
@@ -81,51 +77,38 @@ $("#movie-search").on("click", function(event) {
 });
 
 
-
-$("#sign-up-form").on("submit", function(event) {
+$("#sign-up-form").submit(function(event) {
   event.preventDefault();
-  console.log(event.target.first_name.value)
-  console.log($("#first_name").val())
-  
-  
   const userObj = {
-    first_name: $("#first_name").val(),
-    last_name: $("#last_name").val(),
-    email: $("#email").val(),
-    password: $("#password").val(),
+    first_name: event.target.first_name.value,
+    last_name: event.target.last_name.value,
+    email: event.target.email.value,
+    password: event.target.password.value
   }
   console.log(userObj)
+  
   $.ajax({
     method:"POST",
     data:userObj,
     url:"/signup"
 }).then(data=>{
-    location.href = "/"
+  location.href = "/"
 })
 });
 
-// $(".brand-logo").on("click", function(event) {
-//   console.log("hello")
-// })
-// I can't get any events to fire at all. 
-// Not sure I'm sending the right two items to the controller, here. 
 
-$("#login-form").on("submit", function(event) {
+$("#log-in-page").submit(function(event) {
   event.preventDefault();
-  
-  const loginObj = {
-    
-    email: $("#email").val(),
-    password: $("#password").val(),
+  const logInObj = {
+    email: event.target.email.value,
+    password: event.target.password.value
   }
-
-  console.log(loginObj)
+  
   $.ajax({
-    method:"POST",
-    data:loginObj,
-    url:"/signup"
+    method: "POST",
+    data: logInObj,
+    url: "/login"
 }).then(data=>{
-    location.href = "/"
+  location.href = "/"
 })
 });
-
