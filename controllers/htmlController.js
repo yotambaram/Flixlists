@@ -18,11 +18,11 @@ router.get("/movies", function (req, res) {
 })
 // create new list by event (button)
 router.post("/movies/addlist", function (req, res) { 
-    db.List.create({
+    console.log(req.body)
+    db.Lists.create({
         list_title: req.body.list_title,
-        userId: req.session.user.id
+        //userId: req.session.user.id
     }).then(newUser => {
-       //////////////
         res.redirect('/movies')
     }).catch(err => {
         console.log(err);
