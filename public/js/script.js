@@ -9,6 +9,10 @@
 // take the data from dt and show it on browser.
 // This function handles events where a movie button is clicked
 
+console.log("hello")
+
+
+
 $("#movie-search").on("click", function(event) {
     console.log("hello");
     event.preventDefault();
@@ -81,16 +85,39 @@ $("#movie-search").on("click", function(event) {
 $("#sign-up-form").on("submit", function(event) {
   event.preventDefault();
   console.log("TEST THE SCRIPT FILE")
-  console.log(req.body.name_name)
+  console.log($("#first_name").val())
   const movieObj = {
-    first_name: req.body.name_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
+    first_name: $("#first_name").val(),
+    last_name: $("#last_name").val(),
+    email: $("#email").val(),
+    password: $("#password").val(),
   }
   $.ajax({
     method:"POST",
     data:movieObj,
+    url:"/signup"
+}).then(data=>{
+    location.reload();
+})
+});
+
+// $(".brand-logo").on("click", function(event) {
+//   console.log("hello")
+// })
+// I can't get any events to fire at all. 
+// Not sure I'm sending the right two items to the controller, here. 
+
+$("#login-form").on("submit", function(event) {
+  event.preventDefault();
+  
+  const loginObj = {
+    
+    email: $("#email").val(),
+    password: $("#password").val(),
+  }
+  $.ajax({
+    method:"POST",
+    data:loginObj,
     url:"/signup"
 }).then(data=>{
     location.reload();
