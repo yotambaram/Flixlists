@@ -112,3 +112,21 @@ $("#log-in-page").submit(function(event) {
   location.href = "/"
 })
 });
+
+$("#add-new-list-form").on("submit", function(event) {
+  event.preventDefault();
+  // This line grabs the input from the newList textbox
+  let listName = $("#add-new-list-name").val().trim();
+  console.log("list name" + listName + "*******************************************")
+
+  const listObj = {
+    list_title: listName,
+  }
+  $.ajax({
+    method:"POST",
+    data:listObj,
+    url:"/movies/addlist"
+}).then(data=>{
+  location.href = "/"
+})
+});
