@@ -18,17 +18,15 @@ router.post("/login", function (req, res) {
             email: req.body.email
         }
     }).then(dbUser => {
-        
         if (bcrypt.compareSync(req.body.password, dbUser.password)) {
             req.session.user = {
                 email: dbUser.email,
                 id: dbUser.id
             };
-           
-            res.send("logged in!")
+
             res.redirect('/movies')
         } else {
-            res.send("not logged in")  //<---------------- MAKE A HTML RES
+            res.status(404).send("not working")
         }
     })
 })
