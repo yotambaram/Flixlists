@@ -1,17 +1,17 @@
 
 
 module.exports = function(sequelize, DataTypes) {
-    const Lists = sequelize.define('Lists', {
+    const List = sequelize.define('List', {
         list_title: { //We need to decide if the table has a name or just id
             type: DataTypes.TEXT,
             //allowNull:false
-        },
+        }
     });
-    Lists.associate = function(models) {
-        Lists.belongsTo(models.User, {foreignKey: {name: 'userId'}})
-        Lists.hasMany(models.Movies)
+    List.associate = function(models) {
+        List.hasMany(models.Movie);
+        List.belongsTo(models.User);
     };
-    return Lists;
+    return List;
 };
 
 
