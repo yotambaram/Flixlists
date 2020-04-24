@@ -8,8 +8,12 @@ module.exports = function(sequelize, DataTypes) {
         },
     });
     Lists.associate = function(models) {
-        Lists.belongsTo(models.User)
-        Lists.hasMany(models.Movie)
+        Lists.belongsTo(models.User, {foreignKey: {name: 'userId'}})
+        Lists.hasMany(models.Movies)
     };
     return Lists;
 };
+
+
+
+

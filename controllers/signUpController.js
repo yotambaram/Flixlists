@@ -23,7 +23,6 @@ router.post("/signup", function (req, res) {
             email: newUser.email,
             id: newUser.id
         };
-        console.log("test")
         res.redirect('/movies')
     }).catch(err => {
         console.log(err);

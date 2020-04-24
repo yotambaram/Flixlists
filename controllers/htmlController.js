@@ -8,20 +8,38 @@ router.get("/", function (req, res) {
         res.redirect("/movies");
 })
 
+//const bcrypt = require("bcrypt");
+router.get("/index", function (req, res) {
+    res.redirect("/movies");
+})
+
 //main page, takes all user data and render just if user logged in
 router.get("/movies", function (req, res) {  
     if (req.session.user) {
-        res.render("index", req.session.user)
-    }else {
+        console.log(req.session.user.id)
+        db.Lists.findAll({
+            raw: true,
+            where:{
+                UserID: 1 //req.session.user.id
+            }
+
+        }).then(userList =>{
+           const test = {userList}
+           console.log(test)
+           res.render("index", test)
+        })
+    } else {
         res.redirect("/login");
-    }
-})
+    
+}}
+)
+
 // create new list by event (button)
 router.post("/movies/addlist", function (req, res) { 
     console.log(req.body)
     db.Lists.create({
         list_title: req.body.list_title,
-        //userId: req.session.user.id
+        userId: req.session.user.id
     }).then(newUser => {
         res.redirect('/movies')
     }).catch(err => {
@@ -31,11 +49,11 @@ router.post("/movies/addlist", function (req, res) {
 })
 //posting new movie to 'movie' table. the user can choose witch list (front)
 router.post("/movies/addmovie", function (req, res) { 
+    console.log(req.body)
     if (req.session.user) {
-        db.Movie.create({
-            movie_name: req.body.movie_name,
-            imdb_id: req.body.imdb_id,
-            listId: req.body.listId
+        db.Movies.create({
+            movie_name: req.body.movieName,
+            imdb_id: req.body.movieID,
         }).then(newUser => {
     //////////
             res.redirect('/movies')
