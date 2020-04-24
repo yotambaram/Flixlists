@@ -51,14 +51,6 @@ router.get("/movies/:listId", function (req, res) {
 
 
 
-
-
-
-
-
-
-
-
 // create new list by event (button)
 router.post("/movies/addlist", function (req, res) { 
     console.log(req.body)
@@ -72,6 +64,8 @@ router.post("/movies/addlist", function (req, res) {
         res.status(500).json(err);
     })
 })
+
+
 //posting new movie to 'movie' table. the user can choose witch list (front)
 router.post("/movies/addmovie", function (req, res) { 
     console.log(req.body)
