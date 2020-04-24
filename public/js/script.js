@@ -62,16 +62,16 @@ $("#movie_search").on("submit", function (event) {
 
 
     $("#add-to-list").on("click", function (event) {   
+      event.preventDefault();
+      let listId = $(this).data("id")
       let movieObj = {
         movieName: response.Title,
-        movieID: movieID
+        movieID: movieID,
       }
-      newOb =JSON.stringify(movieObj)
-      console.log("test" + newOb)
       $.ajax({
         method: "POST",
         data: movieObj,
-        url: "/movies/addmovie"
+        url: `/movies/${listId}`
       }).then(data => {
         console.log(data)
         location.href = "/"

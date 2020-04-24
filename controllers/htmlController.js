@@ -17,15 +17,16 @@ router.get("/index", function (req, res) {
 router.get("/movies", function (req, res) {  
     if (req.session.user) {
         db.List.findAll({
-            raw: true,
+        
             where:{
                 UserID: req.session.user.id
-            }
+            },
+            include:[db.Movie]
 
         }).then(userList =>{
-            
-            console.log(userList)
-            res.render("index", {userList})
+            const userListJSON = userList.map(list=>list.toJSON())
+            console.log(userListJSON)
+            res.render("index", {userList:userListJSON})
         })
     } else {
         res.redirect("/login");
@@ -37,7 +38,7 @@ router.get("/movies", function (req, res) {
 //main page, takes all user data and render just if user logged in
 router.get("/movies/:listId", function (req, res) {  
     if (req.session.user) {
-        db.movie.findAll({
+        db.Movie.findAll({
             raw: true,
             where:{
                 ListId: req.params.listId
@@ -69,12 +70,13 @@ router.post("/movies/addlist", function (req, res) {
 
 
 //posting new movie to 'movie' table. the user can choose witch list (front)
-router.post("/movies/addmovie", function (req, res) { 
+router.post("/movies/:id", function (req, res) { 
     console.log(req.body)
     if (req.session.user) {
         db.Movie.create({
             movie_name: req.body.movieName,
             imdb_id: req.body.movieID,
+            ListId: req.params.id
         }).then(newUser => {
             res.redirect('/movies')
         }).catch(err => {
