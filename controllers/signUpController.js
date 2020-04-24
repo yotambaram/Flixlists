@@ -23,6 +23,11 @@ router.post("/signup", function (req, res) {
             email: newUser.email,
             id: newUser.id
         };
+        db.List.create({
+            list_title: `${req.body.first_name}'s first list!`,
+            UserId: req.session.user.id
+
+         })  
         res.redirect('/movies')
     }).catch(err => {
         console.log(err);
