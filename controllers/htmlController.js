@@ -16,17 +16,14 @@ router.get("/index", function (req, res) {
 //main page, takes all user data and render just if user logged in
 router.get("/movies", function (req, res) {  
     if (req.session.user) {
-        console.log(req.session.user.id)
-        db.Lists.findAll({
+        db.List.findAll({
             raw: true,
             where:{
-                UserID: 1 //req.session.user.id
+                UserID: req.session.user.id
             }
 
         }).then(userList =>{
-           const test = {userList}
-           console.log(test)
-           res.render("index", test)
+           res.render("index", userList)
         })
     } else {
         res.redirect("/login");
@@ -34,12 +31,40 @@ router.get("/movies", function (req, res) {
 }}
 )
 
+
+//main page, takes all user data and render just if user logged in
+router.get("/movies/:listId", function (req, res) {  
+    if (req.session.user) {
+        db.movie.findAll({
+            raw: true,
+            where:{
+                ListId: req.params.listId
+            }
+        }).then(movieList =>{
+           res.render("index", movieList)
+        })
+    } else {
+        res.redirect("/login");
+    
+}}
+)
+
+
+
+
+
+
+
+
+
+
+
 // create new list by event (button)
 router.post("/movies/addlist", function (req, res) { 
     console.log(req.body)
-    db.Lists.create({
+    db.List.create({
         list_title: req.body.list_title,
-        userId: req.session.user.id
+        UserId: req.session.user.id
     }).then(newUser => {
         res.redirect('/movies')
     }).catch(err => {
@@ -51,11 +76,10 @@ router.post("/movies/addlist", function (req, res) {
 router.post("/movies/addmovie", function (req, res) { 
     console.log(req.body)
     if (req.session.user) {
-        db.Movies.create({
+        db.Movie.create({
             movie_name: req.body.movieName,
             imdb_id: req.body.movieID,
         }).then(newUser => {
-    //////////
             res.redirect('/movies')
         }).catch(err => {
             console.log(err);

@@ -137,3 +137,18 @@ $("#add-new-list-form").on("submit", function (event) {
     location.href = "/"
   })
 });
+
+
+
+$(`#addtolist`).on("click", function (event) {
+  event.preventDefault();
+  let listId = $(this).data("id")
+  $.ajax({
+    method: "GET",
+    url: `/movies/${listId}`
+  }).then(data => {
+    location.href = `/movies/${id}`
+  })
+});
+
+

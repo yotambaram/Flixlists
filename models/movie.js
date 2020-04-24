@@ -1,6 +1,6 @@
 
 module.exports = function(sequelize, DataTypes) {
-    const Movies = sequelize.define('Movies', {
+    const Movie = sequelize.define('Movie', {
         movie_name :{
             type: DataTypes.STRING,
             //allowNull:false,
@@ -8,11 +8,11 @@ module.exports = function(sequelize, DataTypes) {
         imdb_id: {
             type: DataTypes.STRING,
             //allowNull:false
-        },
+        }
     });
-    Movies.associate = function(models) {
-    Movies.belongsTo(models.Lists, {foreignKey: {name: 'id'}})
+    Movie.associate = function(models) {
+    Movie.belongsTo(models.List)
     };
-    return Movies;
+    return Movie;
 };
 
