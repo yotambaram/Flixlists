@@ -1,7 +1,25 @@
+
+
+
+
+
+
+
 <div class="container">
+
+
+
+
+
+
     <div class="row">
         <div class="section">
             <!-- Grab stuff from here for db -->
+
+        </div>
+    </div>
+    <div class="row">
+        <div id="apiCard" class="section">
             <form class="col s12" id="movie_search">
                 <div class="row">
                     <div class="input-field col s12">
@@ -10,23 +28,22 @@
                         <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
                             Search!
                         </button>
-                        
+
                     </div>
                 </div>
             </form>
-        </div>
-    </div>
-    <div class="row">
-        <div id="apiCard" class="section">
             <div class="row">
                 <div class="card light-blue lighten-5 col s12">
                     <div class="card-content blue-text">
-                        <span class="card-title" id="results-title"><div class="divider"></div></span>
+                        <span class="card-title" id="results-title">
+                            <div class="divider"></div>
+                        </span>
                         <div class="row" id="movies-view">
-                            <button class="btn waves-effect waves-light btn-large" type="submit" name="action" id="add-to-list">
-                            Add to list!
-                        </button>
-                            
+                            <button class="btn waves-effect waves-light btn-large" type="submit" name="action"
+                                id="addtolist" data-id="1">
+                                Add to list!
+                            </button>
+
                             {{!-- <p class="col s2">
                                 Movie Information
                             </p>
@@ -45,14 +62,14 @@
         </div>
     </div>
 
-<!-- This, along with everything else, needs tweaking. it'll work for now though. -->
-<div class="row">
-   <div class="section">
-       <form class="col s12" id="add-new-list-form">
+    <!-- This, along with everything else, needs tweaking. it'll work for now though. -->
+    <div class="row">
+        <div class="section">
+            <form class="col s12" id="add-new-list-form">
                 <h5>Start a New List</h5>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input  type="text"  id="add-new-list-name"/>
+                        <input type="text" id="add-new-list-name" />
                         <label for="add-new-list">Enter the List Name:</label>
                         <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
                             Submit
@@ -60,54 +77,29 @@
                     </div>
                 </div>
             </form>
-   </div>
-</div>
-<div class="row">
-    <div class="section" id="movie-lists">
-        <ul class="collection with-header col s4">
-            <li class="collection-header cyan lighten-3">
-                <h4>Best Movies</h4>
-            </li>
-            <li class="collection-item">Movie <a data-id={{id}} class="waves-effect waves-teal btn-flat">Delete</a>
-            </li>
-            <li class="collection-item">Movie <a data-id={{id}} class="waves-effect waves-teal btn-flat">Delete</a>
-            </li>
-            <li class="collection-item">Movie <a data-id={{id}} class="waves-effect waves-teal btn-flat">Delete</a>
-            </li>
-            <li><a  class="waves-effect waves-green btn-flat"data-id="1">Add to this list</a></li>
+        </div>
+    </div>
+    <div class="row">
+        <div class="section" id="movie-lists">
+            {{#each userList}}
+            
+            <p>{{list_title}}</p>
+            <p>{{id}}</p>
+            <p>{{UserId}}</p>
+            
+            {{/each}}
 
-        </ul>
-        <ul class="collection with-header col s4">
-            <li class="collection-header cyan lighten-3">
-                <h4>Best Movies</h4>
-            </li>
-            <li class="collection-item">Movie <a data-id={{id}} class="waves-effect waves-teal btn-flat">Delete</a>
-            </li>
-            <li class="collection-item">Movie <a data-id={{id}} class="waves-effect waves-teal btn-flat">Delete</a>
-            </li>
-            <li class="collection-item">Movie <a data-id={{id}} class="waves-effect waves-teal btn-flat">Delete</a>
-            </li>
-            <li><a  class="waves-effect waves-green btn-flat"data-id="2">Add to this list</a></li>
 
-        </ul>
-        <ul class="collection with-header col s4">
-            <li class="collection-header cyan lighten-3">
-                <h4>Best Movies</h4>
-            </li>
-            <li class="collection-item">Movie <a data-id={{id}} class="waves-effect waves-teal btn-flat">Delete</a>
-            </li>
-            <li class="collection-item">Movie <a data-id={{id}} class="waves-effect waves-teal btn-flat">Delete</a>
-            </li>
-            <li class="collection-item">Movie <a data-id={{id}} class="waves-effect waves-teal btn-flat">Delete</a>
-            </li>
-            <li><a  class="waves-effect waves-green btn-flat" data-id="5" id="addtolist">Add to this list</a></li>
-
-        </ul>
-        
+            {{#each movieList}}
+            
+            <p>{{movie_name}}</p>
+            
+            
+            {{/each}}
 
 
 
-
+        </div>
     </div>
 </div>
 </div>

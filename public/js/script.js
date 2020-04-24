@@ -147,6 +147,7 @@ $(`#addtolist`).on("click", function (event) {
     method: "GET",
     url: `/movies/${listId}`
   }).then(data => {
+    console.log(data);
     location.href = `/movies/${id}`
   })
 });

@@ -23,7 +23,9 @@ router.get("/movies", function (req, res) {
             }
 
         }).then(userList =>{
-           res.render("index", userList)
+            
+            console.log(userList)
+            res.render("index", {userList})
         })
     } else {
         res.redirect("/login");
@@ -41,7 +43,7 @@ router.get("/movies/:listId", function (req, res) {
                 ListId: req.params.listId
             }
         }).then(movieList =>{
-           res.render("index", movieList)
+           res.render("index", {movieList})
         })
     } else {
         res.redirect("/login");
