@@ -5,7 +5,7 @@ const db = require("../models");
 
 //const bcrypt = require("bcrypt");
 router.get("/", function (req, res) {
-        res.redirect("/movies");
+    res.redirect("/movies");
 })
 
 //const bcrypt = require("bcrypt");
@@ -14,48 +14,50 @@ router.get("/index", function (req, res) {
 })
 
 //main page, takes all user data and render just if user logged in
-router.get("/movies", function (req, res) {  
+router.get("/movies", function (req, res) {
     if (req.session.user) {
         db.List.findAll({
-        
-            where:{
+
+            where: {
                 UserID: req.session.user.id
             },
-            include:[db.Movie]
+            include: [db.Movie]
 
-        }).then(userList =>{
-            const userListJSON = userList.map(list=>list.toJSON())
+        }).then(userList => {
+            const userListJSON = userList.map(list => list.toJSON())
             console.log(userListJSON)
-            res.render("index", {userList:userListJSON})
+            res.render("index", { userList: userListJSON })
         })
     } else {
         res.redirect("/login");
-    
-}}
+
+    }
+}
 )
 
 
 //main page, takes all user data and render just if user logged in
-router.get("/movies/:listId", function (req, res) {  
+router.get("/movies/:listId", function (req, res) {
     if (req.session.user) {
         db.Movie.findAll({
             raw: true,
-            where:{
+            where: {
                 ListId: req.params.listId
             }
-        }).then(movieList =>{
-           res.render("index", {movieList})
+        }).then(movieList => {
+            res.render("index", { movieList })
         })
     } else {
         res.redirect("/login");
-    
-}}
+
+    }
+}
 )
 
 
 
 // create new list by event (button)
-router.post("/movies/addlist", function (req, res) { 
+router.post("/movies/addlist", function (req, res) {
     console.log(req.body)
     db.List.create({
         list_title: req.body.list_title,
@@ -70,7 +72,7 @@ router.post("/movies/addlist", function (req, res) {
 
 
 //posting new movie to 'movie' table. the user can choose witch list (front)
-router.post("/movies/:id", function (req, res) { 
+router.post("/movies/:id", function (req, res) {
     console.log(req.body)
     if (req.session.user) {
         db.Movie.create({
@@ -87,14 +89,26 @@ router.post("/movies/:id", function (req, res) {
         res.redirect("/login");
     }
 })
+
+router.delete("/movies/:id", (req, res) => {
+    db.Movie.destroy({
+        where: {
+            ListId: req.params.id
+        }
+    }).then(deletedProduct => {
+        res.status(200).json(deletedProduct);
+    })
+})
+
+
 // edit list name
-router.put("/movies/editlistname/:id", function (req, res) { 
+router.put("/movies/editlistname/:id", function (req, res) {
     if (req.session.user) {
         db.Movie.update({
             list_title: req.body.movie_name
-        },{
-            where:{
-                id:req.params.id
+        }, {
+            where: {
+                id: req.params.id
             }
         }).then(newUser => {
             /////
@@ -107,6 +121,42 @@ router.put("/movies/editlistname/:id", function (req, res) {
         res.redirect("/login");
     }
 })
+
+
+
+// router.put("/api/movies/:id", function(req, res) {
+//     let listId = "id = " + req.params.id;
+
+//     console.log("listid", listId);
+
+//     List.update({
+//       display: true
+//     }, listId, function(result) {
+//       if (result.changedRows == 0) {
+//         // If no rows were changed, then the ID must not exist, so 404
+//         return res.status(404).end();
+//       } else {
+//         res.status(200).end();
+//       }
+//     });
+//   });
+router.put("/movies/:id", (req, res) => {
+    console.log(req.body)
+    db.List.update({
+        display: req.body.newDisplay,
+    }, {
+        where: {
+            id: req.params.id
+        }
+    }).then(updatedList => {
+        res.status(200).json(updatedList);
+        res.json(updatedList)
+    })
+})
+
+
+
+
 /*
 // movie details page (when user press on movie in the list to get more info)
 router.get("/movies/:id", function (req, res) {

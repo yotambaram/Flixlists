@@ -11,6 +11,7 @@
 
 $("#movie_search").on("submit", function (event) {
   event.preventDefault();
+
   // This line grabs the input from the textbox
   let movie = $("#movie_search_title").val().trim();
   // this is John's key.
@@ -22,6 +23,7 @@ $("#movie_search").on("submit", function (event) {
     method: "GET"
   }).then(function (response) {
     console.log(response)
+    $("#movies-view").empty();
     // Creating a div to hold the movie
     var movieDiv = $("<div class='movie'>");
     // Storing the rating data
@@ -153,3 +155,33 @@ $(`#addtolist`).on("click", function (event) {
 });
 
 
+$(".delete-movie").on("click", function (event) {
+  event.preventDefault();
+  const idToDelete = $(this).data("movie")
+  $.ajax({
+      method: "DELETE",
+      url: `/movies/${idToDelete}`
+  }).then(data => {
+      location.reload();
+  })
+})
+
+
+
+$(".display-change").on("click", function(event) {
+  var id = $(this).data("id");
+  const listToShow = $(this).data("display")
+  console.log(listToShow)
+  var newDisplay = {
+    display: listToShow
+  };
+  console.log(newDisplay)
+  
+  $.ajax({
+    method:"PUT",
+    data: newDisplay,
+    url:`/movies/${id}`
+}).then(data=>{
+    location.href = `/`
+})
+})
