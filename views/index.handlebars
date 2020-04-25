@@ -5,12 +5,8 @@
 
 
 
-    <div class="row">
-        <div class="section">
-            <!-- Grab stuff from here for db -->
 
-        </div>
-    </div>
+
     <div class="row">
         <div id="apiCard" class="section">
             <form class="col s12" id="movie_search">
@@ -26,27 +22,14 @@
                 </div>
             </form>
             <div class="row">
-                <div class="card light-blue lighten-5 col s12">
+                <div class="card col s12">
                     <div class="card-content blue-text">
                         <span class="card-title" id="results-title">
                             <div class="divider"></div>
                         </span>
                         <div class="row" id="movies-view">
-                            <button class="btn waves-effect waves-light btn-large" type="submit" name="action"
-                                id="add-to-list" data-id={{id}}>
-                                Add to list!
-                            </button>
+                            
 
-                            {{!-- <p class="col s2">
-                                Movie Information
-                            </p>
-                            <p class="col s2">
-                                Movie Information
-                            </p>
-                            <p class="col s2">
-                                Movie Information
-                            </p> --}}
-                            <!-- submit db -->
                         </div>
                     </div>
 
@@ -57,13 +40,49 @@
 
     <!-- This, along with everything else, needs tweaking. it'll work for now though. -->
     <div class="row">
+
+
+
+        {{#each userList}}
+        <div class="section col s12" id="movie-lists">
+
+
+            <ul class="collection with-header col s12">
+                 <li class="collection-header"><h4>{{list_title}}</h4></li>
+
+                {{#each Movies}}
+
+                <li class="collection-item">{{movie_name}}</li>
+
+
+                {{/each}}
+                <li class="collection-item"><button class="btn waves-effect waves-light btn-large add-to-list"
+                        type="submit" name="action" data-id={{id}}>
+                        Add to list!
+                    </button></li>
+            </ul>
+
+
+
+
+        </div>
+        {{/each}}
+    </div>
+    <div class="row">
         <div class="section">
-            <form class="col s12" id="add-new-list-form">
-                <h5>Start a New List</h5>
+            <form class="col s6 offset-s3" id="add-new-list-form">
+                <h5>My Lists</h5>
+                <div class="row">
+                    <ul class="collection">
+                        {{#each userList}}
+                        <li class="collection-item">{{list_title}}</li>
+                        {{/each}}
+                    </ul>
+                </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <input type="text" id="add-new-list-name" />
-                        <label for="add-new-list">Enter the List Name:</label>
+                        <label for="add-new-list">Start a new list:</label>
                         <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
                             Submit
                         </button>
@@ -71,40 +90,6 @@
                 </div>
             </form>
         </div>
+
     </div>
-    <div class="row">
-        <div class="section" id="movie-lists">
-            {{#each userList}}
-
-            <ul class="collection">
-                <li class="collection-item">{{list_title}}</li>
-                <li class="collection-item">{{id}}</li>
-                <li class="collection-item">{{UserId}}</li>
-
-            </ul>
-            <button class="btn waves-effect waves-light btn-large" type="submit" name="action"
-                                id="add-to-list" data-id={{id}}>
-                                Add to list!
-                            </button>
-            {{#each Movies}}
-
-            <p>{{movie_name}}</p>
-
-
-            {{/each}}
-            {{/each}}
-
-
-
-
-
-
-
-
-
-
-
-        </div>
-    </div>
-</div>
 </div>
