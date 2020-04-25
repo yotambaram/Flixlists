@@ -157,6 +157,7 @@ $(`#addtolist`).on("click", function (event) {
 
 $(".delete-movie").on("click", function (event) {
   event.preventDefault();
+  var id = $(this).data("id");
   const idToDelete = $(this).data("movie")
   $.ajax({
       method: "DELETE",
@@ -169,18 +170,27 @@ $(".delete-movie").on("click", function (event) {
 
 
 $(".display-change").on("click", function(event) {
+  event.preventDefault();
   var id = $(this).data("id");
   const listToShow = $(this).data("display")
+  
+  if (listToShow) {
+    var newDisplay = {
+      display: false
+    };
+  } else {
+    var newDisplay = {
+      display: true
+    }
+  }
   console.log(listToShow)
-  var newDisplay = {
-    display: listToShow
-  };
+  
   console.log(newDisplay)
   
   $.ajax({
     method:"PUT",
     data: newDisplay,
-    url:`/movies/${id}`
+    url:`/movies/disp/${id}`
 }).then(data=>{
     location.href = `/`
 })

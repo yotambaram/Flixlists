@@ -25,7 +25,6 @@ router.get("/movies", function (req, res) {
 
         }).then(userList => {
             const userListJSON = userList.map(list => list.toJSON())
-            console.log(userListJSON)
             res.render("index", { userList: userListJSON })
         })
     } else {
@@ -58,7 +57,6 @@ router.get("/movies/:listId", function (req, res) {
 
 // create new list by event (button)
 router.post("/movies/addlist", function (req, res) {
-    console.log(req.body)
     db.List.create({
         list_title: req.body.list_title,
         UserId: req.session.user.id
@@ -73,7 +71,6 @@ router.post("/movies/addlist", function (req, res) {
 
 //posting new movie to 'movie' table. the user can choose witch list (front)
 router.post("/movies/:id", function (req, res) {
-    console.log(req.body)
     if (req.session.user) {
         db.Movie.create({
             movie_name: req.body.movieName,
@@ -93,10 +90,10 @@ router.post("/movies/:id", function (req, res) {
 router.delete("/movies/:id", (req, res) => {
     db.Movie.destroy({
         where: {
-            ListId: req.params.id
+            id: req.params.id
         }
-    }).then(deletedProduct => {
-        res.status(200).json(deletedProduct);
+    }).then(deletedMovie => {
+        res.status(200).json(deletedMovie);
     })
 })
 
@@ -140,10 +137,11 @@ router.put("/movies/editlistname/:id", function (req, res) {
 //       }
 //     });
 //   });
-router.put("/movies/:id", (req, res) => {
-    console.log(req.body)
+router.put("/movies/disp/:id", (req, res) => {
+    console.log(req.body.display)
+    
     db.List.update({
-        display: req.body.newDisplay,
+        display: req.body.display,
     }, {
         where: {
             id: req.params.id
