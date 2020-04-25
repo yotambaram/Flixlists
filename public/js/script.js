@@ -61,7 +61,7 @@ $("#movie_search").on("submit", function (event) {
 
 
 
-    $("#add-to-list").on("click", function (event) {   
+    $(".add-to-list").on("click", function (event) {   
       event.preventDefault();
       let listId = $(this).data("id")
       let movieObj = {
