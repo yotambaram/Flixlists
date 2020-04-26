@@ -1,26 +1,20 @@
 {
   "development": {
     "username": "root",
-    "password": "password",
-    "database": "favorite_movies_db",
+    "password": "",
+    "database": "petMatchDB",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "favorite_movies_db",
+    "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "operatorsAliases": false
+    "dialect": "mysql"
   },
   "production": {
-    "username": "yt9ml453sne6mdzj",
-    "password": "g49nd9ldbz4o5yce",
-    "database": "jmsdb6x83uh953eb",
-    "host": "i2cpbxbi4neiupid.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    "dialect": "mysql://yt9ml453sne6mdzj:g49nd9ldbz4o5yce@i2cpbxbi4neiupid.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jmsdb6x83uh953eb",
-    "operatorsAliases": false
+    "use_env_variable": "JAWSDB_URL",
+    "dialect": "mysql"
   }
 }
