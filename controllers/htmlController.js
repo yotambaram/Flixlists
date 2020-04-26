@@ -118,13 +118,8 @@ router.put("/movies/editlistname/:id", function (req, res) {
     
 })
 
-
-
 // router.put("/api/movies/:id", function(req, res) {
 //     let listId = "id = " + req.params.id;
-
-//     console.log("listid", listId);
-
 //     List.update({
 //       display: true
 //     }, listId, function(result) {
@@ -136,9 +131,8 @@ router.put("/movies/editlistname/:id", function (req, res) {
 //       }
 //     });
 //   });
+
 router.put("/movies/disp/:id", (req, res) => {
-    console.log(req.body.display)
-    
     db.List.update({
         display: req.body.display,
     }, {
