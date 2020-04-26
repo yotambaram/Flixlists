@@ -1,51 +1,58 @@
 
-p {
-  animation-duration: 2s;
-  animation-name: smallbig;
-}
-
-@keyframes smallbig {
-  50% {
-    font-size: 100%;
-  }
-  75% {
-    font-size: 120%;
-  }
-  100% {
-      font-size:100%;
-  }
+html {
+  font-family: 'Bangers', cursive !important;
+  text-shadow: 1px 1px 1px #eff0f5b6 !important;
 }
 
 body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background: linear-gradient(
+      rgba(4, 49, 248, 0.45), 
+      rgba(12, 240, 31, 0.45)
+    ),url(/assets/background.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    
   }
   header {
     margin-bottom: 100px;
+    
 }
   main {
     flex: 1 0 auto;
   }
 
   .collection-item, .collection, .collection-header {
-    background: aliceblue !important;
+    background: #E8F0FE !important;
+    
   }
 
 button:hover {
-  background-color: blue !important;
+  /* background-color: blue !important; */
+}
+
+button {
+  /* background-color: rgba(255, 0, 0, 0.308) !important; */
+  font-family: 'Bangers', cursive !important;
+  text-shadow: 1px 1px 1px #b2c5f5b6 !important;
+
+
 }
 
 #movie_search_title {
     font-size: 64px;
     padding: 15px 5px 15px 5px;
     background-color: rgba(0, 0, 0, 0.13);
-    border: 1px solid black;
     box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.342);
+    font-family: 'Bangers', cursive !important;
+  text-shadow: 1px 1px 1px #002da0b6 !important;
+  color: black !important;
 }
 #addToListId {
     /* bad way to do this. i'll fix it later */
-    margin-top: 150px;
+    /* margin-top: 150px; */
 }
 #movie-lists {
     display: flex;
@@ -56,16 +63,23 @@ button:hover {
 }
 nav {
     padding: 50px 0px 125px 0px;
-    box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.342);
+    /* box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.342); */
+    box-shadow: 
+       inset 0 -3em 3em rgba(0,0,0,0.1),
+       inset 1px 2px 40px 20px rgba(0, 0, 0, 0.212),
+             2px 2px  5px 2px rgba(0, 0, 0, 0.342),
+             0.3em 0.3em 1em rgba(0,0,0,0.3) !important;
+    
 }
 
-#add-new-list-form {
-  border: solid 1px blue;
+#add-new-list-name {
+  color: black;
+  font-family: 'Bangers', cursive !important;
 }
 
-#searchdisplay {
-  border: solid 1px blue;
-
+.add-new-list::after {
+  color: black;
+  background-color: darkmagenta;
 }
 
 #apiresults {
@@ -74,4 +88,41 @@ nav {
 
 .edit-list-new {
   display: none;
+}
+
+#movies-poster {
+  margin-bottom: 50px;
+}
+
+footer {
+  box-shadow: 
+       inset 0 -3em 3em rgba(0,0,0,0.1), 
+             2px 2px  5px 2px rgba(0, 0, 0, 0.342),
+             0.3em 0.3em 1em rgba(0,0,0,0.3) !important;
+  
+}
+
+.input-field label {
+  color: black
+}
+
+  
+  
+
+
+
+.newName {
+  font-family: 'Bangers', cursive !important;
+  text-shadow: 1px 1px 1px #f9fafcb6 !important;
+  color: black !important;
+
+}
+
+.fix-fonts {
+  font-family: 'Bangers', cursive !important;
+}
+
+.validate {
+  font-family: 'Bangers', cursive !important;
+  text-shadow: 1px 1px 1px #b2c5f5b6 !important;
 }

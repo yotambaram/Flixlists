@@ -1,0 +1,98 @@
+html {
+  font-family: "Bangers", cursive !important;
+  text-shadow: 1px 1px 1px #eff0f5b6 !important;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(rgba(4, 49, 248, 0.45), rgba(12, 240, 31, 0.45)), url(/assets/background.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+header {
+  margin-bottom: 100px;
+}
+
+nav {
+  padding: 50px 0px 125px 0px;
+  box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), inset 1px 2px 40px 20px rgba(0, 0, 0, 0.212), 2px 2px 5px 2px rgba(0, 0, 0, 0.342), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3) !important;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+button {
+  font-family: "Bangers", cursive !important;
+  text-shadow: 1px 1px 1px #eff0f5b6 !important;
+}
+
+.brand-logo {
+  font-size: 80px !important;
+}
+
+.collection-item,
+.collection,
+.collection-header {
+  background: #e8f0fe !important;
+}
+
+.add-new-list::after {
+  color: black;
+}
+
+.edit-list-new {
+  display: none;
+}
+
+.input-field label {
+  color: black;
+}
+
+.newName {
+  font-family: "Bangers", cursive !important;
+  text-shadow: 1px 1px 1px #f9fafcb6 !important;
+  color: black !important;
+}
+
+.fix-fonts {
+  font-family: "Bangers", cursive !important;
+}
+
+.validate {
+  font-family: "Bangers", cursive !important;
+  text-shadow: 1px 1px 1px #eff0f5b6 !important;
+}
+
+#movie_search_title {
+  font-size: 64px;
+  padding: 15px 5px 15px 5px;
+  background-color: rgba(0, 0, 0, 0.13);
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.342);
+  font-family: "Bangers", cursive !important;
+  text-shadow: 1px 1px 1px #002da0b6 !important;
+  color: black !important;
+}
+
+#movie-lists {
+  display: flex;
+  justify-content: space-around;
+}
+
+#add-new-list-name {
+  color: black;
+  font-family: "Bangers", cursive !important;
+}
+
+#apiresults {
+  display: none;
+}
+
+#movies-poster {
+  margin-bottom: 50px;
+}
+
+/*# sourceMappingURL=styles.css.map */
