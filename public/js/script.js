@@ -7,7 +7,7 @@ $("#movie_search").on("submit", function (event) {
   }
   
 
-  var queryURL = `https://www.omdbapi.com/?t=${movie}` + process.env.IMDBAPIKEY;
+  var queryURL = `https://www.omdbapi.com/?t=${movie}` + env.IMDBAPIKEY;
   
   $.ajax({
     url: queryURL,

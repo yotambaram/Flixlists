@@ -11,6 +11,7 @@ const db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(session({
+  secret: process.env.IMDBAPIKEY,
   secret: process.env.SESSION_SECRET,
   store: new SequelizeStore({
       db: db.sequelize
