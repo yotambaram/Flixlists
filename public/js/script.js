@@ -24,6 +24,7 @@ $("#movie_search").on("submit", function (event) {
   }).then(function (response) {
     console.log(response)
     $("#movies-view").empty();
+    $("#apiresults").show();
     // Creating a div to hold the movie
     var movieDiv = $("<div class='movie'>");
     // Storing the rating data
@@ -61,9 +62,9 @@ $("#movie_search").on("submit", function (event) {
     // Putting the entire movie above the previous movies
     $("#movies-view").prepend(movieDiv);
 
+   $(this).parent("form").show()
 
-
-    $(".add-to-list").on("click", function (event) {   
+    $(".add-to-list").on("click", function (event) {
       event.preventDefault();
       let listId = $(this).data("id")
       let movieObj = {
@@ -160,38 +161,76 @@ $(".delete-movie").on("click", function (event) {
   var id = $(this).data("id");
   const idToDelete = $(this).data("movie")
   $.ajax({
-      method: "DELETE",
-      url: `/movies/${idToDelete}`
+    method: "DELETE",
+    url: `/movies/${idToDelete}`
   }).then(data => {
-      location.reload();
+    location.reload();
   })
 })
 
 
 
-$(".display-change").on("click", function(event) {
+
+// const button = $(".display-change");
+// if (button.data("display")) {
+//   button.text(button.data("text-original"));
+// } else {
+//   button.text(button.data("text-swap"));
+// }
+
+
+$(".display-change").on("click", function (event) {
+
   event.preventDefault();
-  var id = $(this).data("id");
+  const id = $(this).data("id");
   const listToShow = $(this).data("display")
   
   if (listToShow) {
     var newDisplay = {
       display: false
-    };
-  } else {
+    }
+  } 
+  else {
     var newDisplay = {
       display: true
     }
   }
-  console.log(listToShow)
+
+  $.ajax({
+    method: "PUT",
+    data: newDisplay,
+    url: `/movies/disp/${id}`
+  }).then(data => {
+    location.reload();
+  })
+})
+
+
+$(".update-list-name").on("click", function (event) {
+  event.preventDefault();
+  let list = $(this).data("list")
+  const editInput = $(`#edit-list-input-${list}`)
+  editInput.toggleClass('edit-list-new')
+})
+
+
+$(".edit-list-new").on("submit", function (event) {
+  event.preventDefault();
+  let id = $(this).data("number")
+  console.log(id)
+  const newLisName = $(`#newListName-${id}`)
+  listTitle = newLisName.val()
   
-  console.log(newDisplay)
+  const listObj = {
+    list_title: listTitle
+  }
+  console.log(listObj)
   
   $.ajax({
-    method:"PUT",
-    data: newDisplay,
-    url:`/movies/disp/${id}`
-}).then(data=>{
-    location.href = `/`
-})
+    method: "PUT",
+    data: listObj,
+    url: `/movies/editlistname/${id}`
+  }).then(data => {
+    location.reload();
+  })
 })

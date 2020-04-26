@@ -69,7 +69,7 @@ router.post("/movies/addlist", function (req, res) {
 })
 
 
-//posting new movie to 'movie' table. the user can choose witch list (front)
+//posting new movie to 'movie' table. the user can choose which list (front)
 router.post("/movies/:id", function (req, res) {
     if (req.session.user) {
         db.Movie.create({
@@ -100,23 +100,22 @@ router.delete("/movies/:id", (req, res) => {
 
 // edit list name
 router.put("/movies/editlistname/:id", function (req, res) {
-    if (req.session.user) {
-        db.Movie.update({
-            list_title: req.body.movie_name
+    
+        db.List.update({
+            list_title: req.body.list_title
         }, {
             where: {
                 id: req.params.id
             }
-        }).then(newUser => {
-            /////
-            res.redirect('/movies')
+        }).then(data => {
+            res.status(200).json(data);
+
+            
         }).catch(err => {
             console.log(err);
             res.status(500).json(err);
         })
-    } else {
-        res.redirect("/login");
-    }
+    
 })
 
 
@@ -148,7 +147,6 @@ router.put("/movies/disp/:id", (req, res) => {
         }
     }).then(updatedList => {
         res.status(200).json(updatedList);
-        res.json(updatedList)
     })
 })
 
