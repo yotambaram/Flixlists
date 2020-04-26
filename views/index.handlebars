@@ -5,39 +5,38 @@
 
 
         <div id="apiCard" class="section">
-            <div class="col s4" id="add-new-list-form">
+            <div class="col s12 m4" id="add-new-list-form">
                 <h5>My Lists</h5>
                 <div class="row">
                     <ul class="collection">
                         {{#each userList}}
                         <li class="collection-item">{{list_title}}<a class="btn-flat display-change right"
-                                data-id={{id}} data-display={{display}}>Show/Hide List</a><button
-                                class="btn-flat waves-effect waves-light add-to-list" type="submit" name="action"
+                                data-id={{id}} data-display={{display}}>Show/Hide List</a><a
+                                class="btn-flat add-to-list right" type="submit" name="action"
                                 data-id={{id}}>
                                 Add to list!
-                            </button></li>
+                            </a></li>
                         {{/each}}
                     </ul>
                 </div>
                 <div class="row">
                     <form action="">
                         <div class="input-field col s12">
-                            <input type="text" id="add-new-list-name" />
-                            <label for="add-new-list">Start a new list:</label>
-                            <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
+                            <input type="text" id="add-new-list-name" required>
+                            <label for="add-new-list black">Start a new list:</label>
+                            <button class="waves-effect waves-blue btn indigo" type="submit" name="action">
                                 Submit
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-            <div class="col s8" id="searchdisplay">
+            <div class="col s12 m7 offset-m1" id="searchdisplay">
                 <form id="movie_search">
                     <div class="row">
                         <div class="input-field">
-                            <input id="movie_search_title" type="text" />
-                            <label for="movie_search_title">Enter a Movie Title:</label>
-                            <button class="btn waves-effect waves-light btn-large" type="submit" name="action">
+                            <input id="movie_search_title" placeholder="Enter a Movie Title:" type="text" required>
+                            <button class="btn waves-effect waves-light btn-large indigo" type="submit" name="action">
                                 Search!
                             </button>
 
@@ -46,12 +45,16 @@
                 </form>
                 <div class="row">
                     <div class="card col" id="apiresults">
-                        <div class="card-content blue-text">
+                        <div class="card-content" id="formovies">
                             <span class="card-title" id="results-title">
-                                <div class="divider"></div>
                             </span>
-                            <div class="row" id="movies-view">
+                            <div class="col s12 l6" id="movies-view">
+                                <ul class="collection" id="search-results">
 
+                                </ul>
+
+                            </div>
+                            <div class="col s12 l6 center" id="movies-poster">
 
                             </div>
                         </div>
@@ -75,7 +78,7 @@
             <ul class="collection with-header col s12">
                 <li class="collection-header">
                     <h4>
-                        {{list_title}}</h4><a class="waves-effect waves-orange btn-flat update-list-name" data-list={{id}}>edit</a>
+                        {{list_title}}</h4><a class="waves-effect waves-indigo btn-flat update-list-name" data-list={{id}}>edit</a>
                     <form action="post" class="edit-list-new" id="edit-list-input-{{id}}" data-number={{id}}>
                         <div class="input-field">
                             <input placeholder="Enter New List Name" class="newName" id="newListName-{{id}}" type="text" >
