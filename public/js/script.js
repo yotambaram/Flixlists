@@ -3,14 +3,6 @@
 // require('dotenv').config()
 // const key = config.API_KEY
 
-// get the inputs from user and do...
-
-// take the data from dt and show it on browser.
-
-/////// DOM manipulation
-// get the inputs from user and do...
-// take the data from dt and show it on browser.
-// This function handles events where a movie button is clicked
 
 $("#movie_search").on("submit", function (event) {
   event.preventDefault();
@@ -62,45 +54,8 @@ $("#movie_search").on("submit", function (event) {
     $("#movies-poster").append(poster);
     $("li").attr("class", "collection-item")
 
-    // // Creating a div to hold the movie
-    // var movieDiv = $("<div class='movie'>");
-    // // Storing the rating data
-    // var rating = response.Rated;
-    // // Creating an element to have the rating displayed
-    // var pOne = $("<p>").text("Rating: " + rating);
-    // // Displaying the rating
-    // movieDiv.append(pOne);
-    // // Storing the release year
-    // var released = response.Released;
-    // // Creating an element to hold the release year
-    // var pTwo = $("<p>").text("Released: " + released);
-    // // Displaying the release year
-    // movieDiv.append(pTwo);
-    // // Storing the plot
-    // var plot = response.Plot;
-    // // Creating an element to hold the plot
-    // var pThree = $("<p>").text("Plot: " + plot);
-    // // Appending the plot
-    // movieDiv.append(pThree);
-    // // Retrieving the URL for the image
-    // var imgURL = response.Poster;
-    // // Creating an element to hold the image
-    // var image = $("<img>").attr("src", imgURL);
-    // // Appending the image
-    // movieDiv.append(image);
-    // // Create a button with movie data attached
-    // var movieTitle = response.Title;
-    // var movieID = response.imdbID;
-    // // var button = $("<button>").text("Title: " + movieTitle);
-    // var button = $("<button>").text("ID: " + movieID);
-    // // button.addClass
-    // // adding button to page  
-    // movieDiv.append(button);
-    // // Putting the entire movie above the previous movies
+  
 
-    // $("#movies-view").prepend(movieDiv);
-
-    $(this).parent("form").show()
 
     $(".add-to-list").on("click", function (event) {
       event.preventDefault();
@@ -208,13 +163,6 @@ $(".delete-movie").on("click", function (event) {
 
 
 
-
-// const button = $(".display-change");
-// if (button.data("display")) {
-//   button.text(button.data("text-original"));
-// } else {
-//   button.text(button.data("text-swap"));
-// }
 
 
 $(".display-change").on("click", function (event) {
