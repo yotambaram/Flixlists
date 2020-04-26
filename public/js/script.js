@@ -1,24 +1,13 @@
-/////// DOM manipulation
-const express = require("express");
-const app = express();
-// require('dotenv').config()
-// const key = config.API_KEY
-
-
 $("#movie_search").on("submit", function (event) {
-  event.preventDefault();
-  // $("#apiresults").empty();
-  
+  event.preventDefault();  
   let movie = $("#movie_search_title").val().trim();
-  
   if (!movie) {
     $("#movie_search_title").attr("placeholder", "please enter a movie")
     return
   }
   
-  // this is John's key.
-  // TODO: encrypt here
-  var queryURL = "https://www.omdbapi.com/?t=${movie}" + process.env.IMDBAPIKEY;
+
+  var queryURL = `https://www.omdbapi.com/?t=${movie}` + process.env.IMDBAPIKEY;
   
   $.ajax({
     url: queryURL,
