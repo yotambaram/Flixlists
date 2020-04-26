@@ -17,7 +17,7 @@ $("#movie_search").on("submit", function (event) {
   
   // this is John's key.
   // TODO: encrypt here
-  var queryURL = `https://www.omdbapi.com/?t=${movie}&apikey=47b3bbc4`;
+  var queryURL = process.env.IMDBAPIKEY;
   
   $.ajax({
     url: queryURL,
