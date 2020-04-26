@@ -1,3 +1,6 @@
+
+
+
 $("#movie_search").on("submit", function (event) {
   event.preventDefault();  
   let movie = $("#movie_search_title").val().trim();
@@ -7,7 +10,7 @@ $("#movie_search").on("submit", function (event) {
   }
   
 
-  var queryURL = `https://www.omdbapi.com/?t=${movie}` + env.IMDBAPIKEY;
+  var queryURL = `https://www.omdbapi.com/?t=${movie}` + IMDBAPIKEY;
   
   $.ajax({
     url: queryURL,
