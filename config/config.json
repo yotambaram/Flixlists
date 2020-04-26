@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "root",
+    "password": "password",
+    "database": "favorite_movies_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "favorite_movies_db",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "yt9ml453sne6mdzj",
+    "password": "g49nd9ldbz4o5yce",
+    "database": "jmsdb6x83uh953eb",
+    "host": "i2cpbxbi4neiupid.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "dialect": "mysql://yt9ml453sne6mdzj:g49nd9ldbz4o5yce@i2cpbxbi4neiupid.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jmsdb6x83uh953eb",
+    "operatorsAliases": false
+  }
+}
