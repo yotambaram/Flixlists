@@ -1,4 +1,4 @@
-
+require("dotenv").config();
 
 
 $("#movie_search").on("submit", function (event) {
