@@ -12,7 +12,6 @@ router.get("/signup", function (req, res) {
 })
 
 router.post("/signup", function (req, res) {
-    console.log(req.body)
     db.User.create({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
