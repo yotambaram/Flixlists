@@ -8,8 +8,8 @@ $("#movie_search").on("submit", function (event) {
     return
   }
   
-
-  var queryURL = `https://www.omdbapi.com/?t=${movie}&apikey=${process.env.IMDBAPIKEY}`;
+  const imdbKey = process.env.IMDBAPIKEY
+  var queryURL = `https://www.omdbapi.com/?t=${movie}&apikey=${imdbKey}`;
   
   $.ajax({
     url: queryURL,
