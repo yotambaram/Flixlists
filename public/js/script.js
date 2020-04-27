@@ -1,29 +1,20 @@
-/////// DOM manipulation
-
-// require('dotenv').config()
-// const key = config.API_KEY
 
 
 $("#movie_search").on("submit", function (event) {
-  event.preventDefault();
-  // $("#apiresults").empty();
-  
+  event.preventDefault();  
   let movie = $("#movie_search_title").val().trim();
-  
   if (!movie) {
     $("#movie_search_title").attr("placeholder", "please enter a movie")
     return
   }
   
-  // this is John's key.
-  // TODO: encrypt here
-  var queryURL = process.env.IMDBAPIKEY;
+  const imdbKey = process.env.IMDBAPIKEY
+  var queryURL = `https://www.omdbapi.com/?t=${movie}&apikey=${imdbKey}`;
   
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function (response) {
-    console.log(response)
     if (response.Error === "Movie not found!") {
       $("#movie_search_title").attr("placeholder", "please enter a valid movie title")
       return
@@ -69,7 +60,6 @@ $("#movie_search").on("submit", function (event) {
         data: movieObj,
         url: `/movies/${listId}`
       }).then(data => {
-        console.log(data)
         location.href = "/"
       })
     });
@@ -86,8 +76,6 @@ $("#sign-up-form").submit(function (event) {
     email: event.target.email.value,
     password: event.target.password.value
   }
-  console.log(userObj)
-
   $.ajax({
     method: "POST",
     data: userObj,
@@ -105,7 +93,6 @@ $("#login-form").submit(function (event) {
     email: $('#login_email').val(),
     password: $('#login_password').val()
   }
-  console.log(logInObj)
   $.ajax({
     method: "POST",
     data: logInObj,
@@ -143,7 +130,6 @@ $(`#addtolist`).on("click", function (event) {
     method: "GET",
     url: `/movies/${listId}`
   }).then(data => {
-    console.log(data);
     location.href = `/movies/${id}`
   })
 });
@@ -203,15 +189,12 @@ $(".update-list-name").on("click", function (event) {
 $(".edit-list-new").on("submit", function (event) {
   event.preventDefault();
   let id = $(this).data("number")
-  console.log(id)
   const newLisName = $(`#newListName-${id}`)
   listTitle = newLisName.val()
 
   const listObj = {
     list_title: listTitle
   }
-  console.log(listObj)
-
   $.ajax({
     method: "PUT",
     data: listObj,

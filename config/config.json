@@ -3,8 +3,7 @@
     "username": "root",
     "password": "",
     "database": "petMatchDB",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "host": "127.0.0.1"
   },
   "test": {
     "username": "root",
