@@ -1,73 +1,68 @@
-
-
 $("#movie_search").on("submit", function (event) {
   event.preventDefault();  
   let movie = $("#movie_search_title").val().trim();
-  if (!movie) {
-    $("#movie_search_title").attr("placeholder", "please enter a movie")
-    return
+  const movieObj = {
+    movie_title: movie
   }
-  
-  //const imdbKey = process.env.IMDBAPIKEY
- //let queryURL = `https://www.omdbapi.com/?t=${movie}&apikey=${imdbKey}`;
- let queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=47b3bbc4";
-  
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function (response) {
-    if (response.Error === "Movie not found!") {
-      $("#movie_search_title").attr("placeholder", "please enter a valid movie title")
-      return
-    }
-    
-    $("#movies-view").empty();
-    $("#movies-poster").empty();
-    $("#apiresults").show();
-
-    $("#results-title").html(`${response.Title} <div class="divider"></div>`)
-
-    let searchResults = $("<ul>").attr({
-      class: "collection",
-      id: "search-results"
-    })
-    let year = $("<li>")
-    let director = $("<li>")
-    let actors = $("<li>")
-    let plot = $("<li>")
-    let poster = $("<img>").attr("src", response.Poster)
-
-    year.text("Released: " + response.Released);
-    director.text("Director: " + response.Director);
-    actors.text("Actors: " + response.Actors);
-    plot.text("Plot: " + response.Plot);
-    searchResults.append(year, director, actors, plot);
-    $("#movies-view").append(searchResults);
-    $("#movies-poster").append(poster);
-    $("li").attr("class", "collection-item")
-
-  
-
-
-    $(".add-to-list").on("click", function (event) {
-      event.preventDefault();
-      let listId = $(this).data("id")
-      let movieObj = {
-        movieName: response.Title,
-        movieID: response.imdbID
+  if (movieObj) {
+    $.ajax({
+      method: "POST",
+      data: movieObj,
+      url: "movies/movieinfo"
+    }).then(response=>{      
+      if (response.Error === "Movie not found!") {
+        $("#movie_search_title").attr("placeholder", "please enter a valid movie title")
+        return
       }
-      $.ajax({
-        method: "POST",
-        data: movieObj,
-        url: `/movies/${listId}`
-      }).then(data => {
-        location.href = "/"
+      
+      $("#movies-view").empty();
+      $("#movies-poster").empty();
+      $("#apiresults").show();
+  
+      $("#results-title").html(`${response.Title} <div class="divider"></div>`)
+  
+      let searchResults = $("<ul>").attr({
+        class: "collection",
+        id: "search-results"
       })
-    });
+      let year = $("<li>")
+      let director = $("<li>")
+      let actors = $("<li>")
+      let plot = $("<li>")
+      let poster = $("<img>").attr("src", response.Poster)
+  
+      year.text("Released: " + response.Released);
+      director.text("Director: " + response.Director);
+      actors.text("Actors: " + response.Actors);
+      plot.text("Plot: " + response.Plot);
+      searchResults.append(year, director, actors, plot);
+      $("#movies-view").append(searchResults);
+      $("#movies-poster").append(poster);
+      $("li").attr("class", "collection-item")
 
-  });
-});
+      $(".add-to-list").on("click", function (event) {
+        event.preventDefault();
+        let listId = $(this).data("id")
+        let movieObj = {
+          movieName: response.Title,
+          movieID: response.imdbID
+        }
+        $.ajax({
+          method: "POST",
+          data: movieObj,
+          url: `/movies/${listId}`
+        }).then(data => {
+          location.href = "/"
+        })
+      });
+    })
+ }
+})
+  
 
+  
+  
+ 
 
 $("#sign-up-form").submit(function (event) {
   event.preventDefault();

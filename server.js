@@ -32,6 +32,8 @@ app.set("view engine", "handlebars");
 const htmlApiRoutes = require("./controllers/htmlController.js");
 const logInApiRoutes = require("./controllers/logInController.js");
 const signUpApiRoutes = require("./controllers/signUpController.js");
+const moviesApiRoutes = require("./controllers/apiController.js");
+app.use(moviesApiRoutes);
 app.use(htmlApiRoutes);
 app.use(logInApiRoutes);
 app.use(signUpApiRoutes);
