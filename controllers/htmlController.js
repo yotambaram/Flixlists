@@ -100,7 +100,6 @@ router.delete("/movies/:id", (req, res) => {
 
 // edit list name
 router.put("/movies/editlistname/:id", function (req, res) {
-    
         db.List.update({
             list_title: req.body.list_title
         }, {
